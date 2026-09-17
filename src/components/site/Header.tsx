@@ -11,6 +11,7 @@ export function Header() {
   }, [pathname]);
 
   return (
+    <>
     <header className="sticky top-0 z-40 border-b border-navy/10 bg-mist/90 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <div className="flex items-center gap-3">
@@ -59,6 +60,7 @@ export function Header() {
           Get a Quote
         </Link>
       </div>
+    </header>
 
       {/* Slide-out service index */}
       <div
@@ -136,6 +138,6 @@ export function Header() {
           </div>
         </aside>
       </div>
-    </header>
+    </>
   );
 }
