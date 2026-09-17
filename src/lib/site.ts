@@ -21,7 +21,7 @@ export const NAV_LINKS = [
   { to: "/gaming", label: "Gaming" },
   { to: "/computer-services", label: "Computer Services" },
   { to: "/digital-services", label: "Digital" },
-  { to: "/pricing", label: "Pricing" },
+  { to: "/pricing", label: "Get a Quote" },
 ] as const;
 
 /** Grouped service index used by the slide-out menu. */
