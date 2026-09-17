@@ -102,8 +102,9 @@ function Index() {
           aria-hidden
           className="size-full object-cover opacity-85 brightness-125 contrast-125 saturate-125"
         />
-        <div className="absolute inset-0 bg-ink/45" />
-        <div className="absolute inset-0 bg-mist/10 mix-blend-soft-light" />
+        <div className="absolute inset-0 bg-ink/30" />
+        <div className="home-motion-grid absolute inset-0" />
+        <div className="home-motion-scan absolute inset-0" />
       </div>
 
       <section className="relative overflow-hidden">
