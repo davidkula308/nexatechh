@@ -19,6 +19,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
 
   --font-display: "Space Grotesk", sans-serif;
+  --font-hero: "Bebas Neue", sans-serif;
   --font-body: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
@@ -96,7 +97,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 }
 
