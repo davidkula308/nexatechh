@@ -1,20 +1,22 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { whatsappLink } from "@/lib/site";
+import { createFileRoute } from "@tanstack/react-router";
+import { enquiryLink, whatsappLink, WHATSAPP_DISPLAY } from "@/lib/site";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing & Packages | NexaTech Solutions" },
+      { title: "Get a Quote | NexaTech Solutions" },
       {
         name: "description",
         content:
-          "Transparent pricing for software installation, complete laptop setup, student CAD packages, gaming setup and digital services in Kenya.",
+          "Request a quote on WhatsApp for software installation, complete laptop setup, student CAD packages, gaming setup, printing and digital services in Kenya.",
       },
-      { property: "og:title", content: "Pricing & Packages | NexaTech Solutions" },
+      { property: "og:title", content: "Get a Quote | NexaTech Solutions" },
       {
         property: "og:description",
-        content: "Clear service rates and bundles — installation, setup, student packages and more.",
+        content: "Tell us what you need and we send a quote on WhatsApp — no fixed price lists.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Pricing,
@@ -23,8 +25,7 @@ export const Route = createFileRoute("/pricing")({
 const tiers = [
   {
     name: "Single Software Install",
-    price: "KSh 800",
-    note: "per title",
+    note: "one title",
     items: [
       "One software installed",
       "Configuration & basic setup",
@@ -35,7 +36,6 @@ const tiers = [
   },
   {
     name: "Complete Laptop Setup",
-    price: "KSh 3,500",
     note: "most popular",
     items: [
       "Windows install & configuration",
@@ -48,7 +48,6 @@ const tiers = [
   },
   {
     name: "Student CAD Package",
-    price: "from KSh 1,800",
     note: "per discipline",
     items: [
       "Discipline software bundle",
@@ -60,15 +59,15 @@ const tiers = [
   },
 ];
 
-const rates = [
-  ["CAD & engineering software (per title)", "KSh 1,000 – 2,500"],
-  ["Windows installation / formatting", "KSh 1,500"],
-  ["Virus & malware removal", "KSh 1,200"],
-  ["Gaming PC setup package", "KSh 3,000"],
-  ["CAD drafting (per drawing)", "from KSh 1,500"],
-  ["A1 plotting (per sheet)", "from KSh 250"],
-  ["CV or portfolio design", "from KSh 1,500"],
-  ["Website development", "from KSh 25,000"],
+const quotable = [
+  "CAD & engineering software installation",
+  "Windows installation / formatting",
+  "Virus & malware removal",
+  "Gaming PC setup package",
+  "CAD drafting (per drawing)",
+  "A1 / A2 / A3 plotting",
+  "CV or portfolio design",
+  "Website development",
 ];
 
 function Pricing() {
@@ -77,15 +76,24 @@ function Pricing() {
       <section className="bg-mist py-14">
         <div className="mx-auto max-w-7xl px-6">
           <div className="eyebrow mb-4 flex items-center gap-2 text-electric">
-            <span className="size-1.5 rounded-full bg-signal" /> Pricing
+            <span className="size-1.5 rounded-full bg-signal" /> Quotes
           </div>
           <h1 className="max-w-3xl text-4xl font-bold leading-[1.05] text-ink sm:text-5xl">
-            Clear prices, quoted before we start
+            Tell us what you need and we&apos;ll quote you
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-navy/70">
-            Service fees below cover our work. Where a paid licence is required, the licence cost is
-            quoted separately and paid to the vendor.
+            Every job is a little different, so we quote after we hear what you need. Send us a
+            message on WhatsApp and you&apos;ll get a clear quote before any work starts.
           </p>
+          <a
+            href={whatsappLink("Hello NexaTech Solutions, I would like a quote for:")}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-signal px-6 py-3 font-semibold text-ink transition hover:brightness-105"
+          >
+            💬 Ask for a quote on WhatsApp
+          </a>
+          <p className="mt-2 font-mono text-xs text-navy/50">{WHATSAPP_DISPLAY}</p>
         </div>
       </section>
 
@@ -107,11 +115,8 @@ function Pricing() {
                 <h2 className={`mb-3 text-xl font-semibold ${t.featured ? "" : "text-ink"}`}>
                   {t.name}
                 </h2>
-                <div className={`font-display text-3xl font-bold ${t.featured ? "" : "text-ink"}`}>
-                  {t.price}
-                </div>
                 <ul
-                  className={`mt-5 flex-1 space-y-2 text-sm ${
+                  className={`mt-2 flex-1 space-y-2 text-sm ${
                     t.featured ? "text-mist/70" : "text-navy/70"
                   }`}
                 >
@@ -119,52 +124,41 @@ function Pricing() {
                     <li key={i}>· {i}</li>
                   ))}
                 </ul>
-                <Link
-                  to="/contact"
+                <a
+                  href={enquiryLink(t.name)}
+                  target="_blank"
+                  rel="noreferrer"
                   className={`mt-6 rounded-lg px-5 py-3 text-center font-semibold transition ${
                     t.featured
                       ? "bg-signal text-ink hover:brightness-105"
                       : "bg-electric text-primary-foreground hover:brightness-110"
                   }`}
                 >
-                  Request this
-                </Link>
+                  💬 Ask for a quote on WhatsApp
+                </a>
               </div>
             ))}
           </div>
 
-          <div className="mt-14 overflow-hidden rounded-2xl border border-navy/10">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-mist text-ink">
-                <tr>
-                  <th className="px-5 py-3 font-semibold">Service</th>
-                  <th className="px-5 py-3 font-semibold">Indicative fee</th>
-                </tr>
-              </thead>
-              <tbody className="text-navy/70">
-                {rates.map(([service, price]) => (
-                  <tr key={service} className="border-t border-navy/10">
-                    <td className="px-5 py-3">{service}</td>
-                    <td className="px-5 py-3 font-mono text-xs">{price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <h2 className="mt-14 text-2xl font-semibold text-ink">Ask about any of these</h2>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {quotable.map((service) => (
+              <a
+                key={service}
+                href={enquiryLink(service)}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between gap-3 rounded-xl border border-navy/10 bg-mist/60 px-4 py-3 text-sm font-medium text-ink transition hover:border-electric/60"
+              >
+                {service} <span aria-hidden>→</span>
+              </a>
+            ))}
           </div>
 
           <p className="mt-8 max-w-3xl font-mono text-xs leading-relaxed text-navy/50">
-            Prices are indicative and confirmed after we hear what you need. Bulk, campus and business
-            rates available.
+            Where a paid licence is required, the licence cost is quoted separately and paid to the
+            vendor. Bulk, campus and business quotes available.
           </p>
-
-          <a
-            href={whatsappLink("Hello NexaTech Solutions, I would like a quote for:")}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-signal px-5 py-3 font-semibold text-ink transition hover:brightness-105"
-          >
-            💬 Ask for a quote on WhatsApp
-          </a>
         </div>
       </section>
     </>
