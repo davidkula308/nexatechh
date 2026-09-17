@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero-workbench.jpg";
 import heroVideo from "@/assets/hero-bg.mp4.asset.json";
 import { ServiceRequest } from "@/components/site/ServiceRequest";
+import { enquiryLink, whatsappLink } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
