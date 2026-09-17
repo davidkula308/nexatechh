@@ -19,11 +19,7 @@ export const Route = createFileRoute("/")({
         content:
           "Professional software installation, computer services and digital solutions with legitimate licensing.",
       },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://nexatechub.lovable.app/" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://nexatechub.lovable.app/" }],
   }),
   component: Index,
 });
@@ -100,11 +96,9 @@ function Index() {
           playsInline
           preload="auto"
           aria-hidden
-          className="size-full object-cover opacity-85 brightness-125 contrast-125 saturate-125"
+          className="size-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-ink/30" />
-        <div className="home-motion-grid absolute inset-0" />
-        <div className="home-motion-scan absolute inset-0" />
+        <div className="absolute inset-0 bg-ink/70" />
       </div>
 
       <section className="relative overflow-hidden">
@@ -114,12 +108,12 @@ function Index() {
               <span className="size-1.5 rounded-full bg-signal" /> Software · Design · Digital
               Solutions
             </div>
-            <h1 className="font-hero text-6xl leading-[0.95] text-mist sm:text-7xl lg:text-8xl">
+            <h1 className="text-5xl font-bold leading-[1.02] text-mist sm:text-6xl">
               Professional software,
               <br />
               installed &amp; configured
               <br />
-              <span className="text-signal drop-shadow-lg">ready to use.</span>
+              <span className="text-signal">ready to use.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist/70">
               Get your essential engineering, productivity and creative software installed,
