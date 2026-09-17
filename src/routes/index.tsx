@@ -95,6 +95,13 @@ function Index() {
           loop
           playsInline
           preload="auto"
+          disablePictureInPicture
+          ref={(el) => {
+            el?.play().catch(() => {});
+          }}
+          onCanPlay={(e) => {
+            void e.currentTarget.play().catch(() => {});
+          }}
           aria-hidden
           className="size-full object-cover opacity-95"
         />
