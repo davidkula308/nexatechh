@@ -60,6 +60,7 @@ export function Header() {
           Get a Quote
         </Link>
       </div>
+    </header>
 
       {/* Slide-out service index */}
       <div
