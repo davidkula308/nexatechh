@@ -96,9 +96,9 @@ function Index() {
           playsInline
           preload="auto"
           aria-hidden
-          className="size-full object-cover opacity-60"
+          className="size-full object-cover opacity-95"
         />
-        <div className="absolute inset-0 bg-ink/70" />
+        <div className="absolute inset-0 bg-ink/35" />
       </div>
 
       <section className="relative overflow-hidden">
