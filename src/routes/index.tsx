@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero-workbench.jpg";
-import heroVideo from "@/assets/hero-bg.mp4.asset.json";
 import { ServiceRequest } from "@/components/site/ServiceRequest";
 import { enquiryLink, whatsappLink } from "@/lib/site";
 
@@ -89,7 +88,7 @@ function Index() {
       {/* Animated video background — every section below floats above it */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-ink">
         <video
-          src={heroVideo.url}
+          src="/hero-bg-clean.webm"
           autoPlay
           muted
           loop
