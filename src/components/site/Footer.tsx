@@ -31,7 +31,7 @@ export function Footer() {
             Digital
           </Link>
           <Link to="/pricing" className="transition hover:text-mist">
-            Pricing
+            Get a Quote
           </Link>
           <Link to="/contact" className="transition hover:text-mist">
             Contact
