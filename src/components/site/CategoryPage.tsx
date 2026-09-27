@@ -1,4 +1,5 @@
 import { enquiryLink, whatsappLink } from "@/lib/site";
+import { PayNowButton } from "./PayNowButton";
 
 export type ServiceGroup = {
   title: string;
@@ -60,6 +61,7 @@ export function CategoryPage({
             >
               💬 Chat on WhatsApp
             </a>
+            <PayNowButton service={title} />
           </div>
         </div>
       </section>
@@ -93,14 +95,20 @@ export function CategoryPage({
                       <li key={item}>· {item}</li>
                     ))}
                   </ul>
-                  <a
-                    href={enquiryLink(group.title)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-5 text-sm font-semibold text-electric hover:underline"
-                  >
-                    Request this on WhatsApp →
-                  </a>
+                  <div className="mt-5 flex flex-wrap items-center gap-4">
+                    <a
+                      href={enquiryLink(group.title)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm font-semibold text-electric hover:underline"
+                    >
+                      Request this on WhatsApp →
+                    </a>
+                    <PayNowButton
+                      service={group.title}
+                      className="rounded-lg bg-signal px-3 py-1.5 text-sm font-semibold text-ink hover:brightness-105"
+                    />
+                  </div>
                 </div>
               </div>
             ))}

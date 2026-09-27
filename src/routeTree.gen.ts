@@ -16,6 +16,7 @@ import { Route as ComputerServicesRouteImport } from './routes/computer-services
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DigitalServicesRouteImport } from './routes/digital-services'
 import { Route as GamingRouteImport } from './routes/gaming'
+import { Route as PaymentSuccessRouteImport } from './routes/payment-success'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as SoftwareRouteImport } from './routes/software'
 
@@ -54,6 +55,11 @@ const GamingRoute = GamingRouteImport.update({
   path: '/gaming',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaymentSuccessRoute = PaymentSuccessRouteImport.update({
+  id: '/payment-success',
+  path: '/payment-success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/digital-services': typeof DigitalServicesRoute
   '/gaming': typeof GamingRoute
+  '/payment-success': typeof PaymentSuccessRoute
   '/pricing': typeof PricingRoute
   '/software': typeof SoftwareRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/digital-services': typeof DigitalServicesRoute
   '/gaming': typeof GamingRoute
+  '/payment-success': typeof PaymentSuccessRoute
   '/pricing': typeof PricingRoute
   '/software': typeof SoftwareRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/digital-services': typeof DigitalServicesRoute
   '/gaming': typeof GamingRoute
+  '/payment-success': typeof PaymentSuccessRoute
   '/pricing': typeof PricingRoute
   '/software': typeof SoftwareRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/digital-services'
     | '/gaming'
+    | '/payment-success'
     | '/pricing'
     | '/software'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/digital-services'
     | '/gaming'
+    | '/payment-success'
     | '/pricing'
     | '/software'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/digital-services'
     | '/gaming'
+    | '/payment-success'
     | '/pricing'
     | '/software'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DigitalServicesRoute: typeof DigitalServicesRoute
   GamingRoute: typeof GamingRoute
+  PaymentSuccessRoute: typeof PaymentSuccessRoute
   PricingRoute: typeof PricingRoute
   SoftwareRoute: typeof SoftwareRoute
 }
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GamingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/payment-success': {
+      id: '/payment-success'
+      path: '/payment-success'
+      fullPath: '/payment-success'
+      preLoaderRoute: typeof PaymentSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DigitalServicesRoute: DigitalServicesRoute,
   GamingRoute: GamingRoute,
+  PaymentSuccessRoute: PaymentSuccessRoute,
   PricingRoute: PricingRoute,
   SoftwareRoute: SoftwareRoute,
 }
