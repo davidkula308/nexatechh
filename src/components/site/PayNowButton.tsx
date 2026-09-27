@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
+import { useEffect, useRef, useState } from "react";
+import { useServerFn, useNavigate } from "@tanstack/react-start";
+import { loadBachs, type Bachs } from "@bachs/js";
 import { createBachsCheckout } from "@/lib/payments.functions";
 
 export function PayNowButton({ service, className }: { service: string; className?: string }) {
@@ -9,6 +10,35 @@ export function PayNowButton({ service, className }: { service: string; classNam
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const checkout = useServerFn(createBachsCheckout);
+  const navigate = useNavigate();
+  const bachsRef = useRef<Bachs | null>(null);
+
+  // Load and initialize the Bachs overlay SDK once.
+  useEffect(() => {
+    let cancelled = false;
+    loadBachs()
+      .then((b) => {
+        if (cancelled) return;
+        bachsRef.current = b;
+        b.Initialize({
+          onEvent: (event) => {
+            if (event.type === "checkout.completed") {
+              navigate({ to: "/payment-success" });
+            } else if (event.type === "checkout.failed") {
+              setError("The payment didn't go through. Please try again or contact us on WhatsApp.");
+            } else if (event.type === "checkout.error") {
+              setError("Payment had a problem. Please try again shortly.");
+            }
+          },
+        });
+      })
+      .catch(() => {
+        // SDK failed to load — fall back to the hosted page on click.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [navigate]);
 
   const pay = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,8 +48,17 @@ export function PayNowButton({ service, className }: { service: string; classNam
     setError("");
     try {
       const r = await checkout({ data: { service, amount: n, email, origin: window.location.origin } });
-      if ("url" in r && r.url) window.location.href = r.url;
-      else setError(("error" in r && r.error) || "Something went wrong.");
+      if ("url" in r && r.url) {
+        if (bachsRef.current) {
+          await bachsRef.current.Checkout.open({ checkoutUrl: r.url });
+          setOpen(false);
+        } else {
+          // Overlay unavailable — fall back to Bachs' hosted page.
+          window.location.href = r.url;
+        }
+      } else {
+        setError(("error" in r && r.error) || "Something went wrong.");
+      }
     } catch {
       setError("Please check your details and try again.");
     } finally {
