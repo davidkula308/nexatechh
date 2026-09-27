@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useServerFn, useNavigate } from "@tanstack/react-start";
+import { useServerFn } from "@tanstack/react-start";
+import { useNavigate } from "@tanstack/react-router";
 import { loadBachs, type Bachs } from "@bachs/js";
 import { createBachsCheckout } from "@/lib/payments.functions";
 
