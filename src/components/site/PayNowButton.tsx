@@ -89,7 +89,7 @@ export function PayNowButton({ service, className }: { service: string; classNam
             <h3 className="text-xl font-semibold">Pay for {service}</h3>
             <p className="mt-1 text-sm text-navy/60">Enter the amount we quoted you on WhatsApp.</p>
             <label className="mt-5 block text-sm font-medium text-navy/70">
-              Amount (KES)
+              Amount (USD)
               <input
                 type="number"
                 min="1"
