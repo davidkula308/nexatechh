@@ -80,47 +80,70 @@ export function PayNowButton({ service, className }: { service: string; classNam
         💳 Pay now
       </button>
       {open ? (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/70 p-4" onClick={() => setOpen(false)}>
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/80 p-4 backdrop-blur-sm"
+          onClick={() => setOpen(false)}
+        >
           <form
             onSubmit={pay}
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-md rounded-2xl bg-mist p-6 text-ink shadow-xl"
+            className="w-full max-w-md overflow-hidden rounded-2xl border border-mist/10 bg-ink text-mist shadow-2xl shadow-electric/10"
           >
-            <h3 className="text-xl font-semibold">Pay for {service}</h3>
-            <p className="mt-1 text-sm text-navy/60">Enter the amount we quoted you on WhatsApp.</p>
-            <label className="mt-5 block text-sm font-medium text-navy/70">
-              Amount (KES)
-              <input
-                type="number"
-                min="1"
-                step="1"
-                required
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-navy/20 bg-card px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-electric"
-              />
-            </label>
-            <label className="mt-4 block text-sm font-medium text-navy/70">
-              Email (for your receipt)
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-navy/20 bg-card px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-electric"
-              />
-            </label>
-            {error ? <p className="mt-3 text-sm text-destructive">{error}</p> : null}
-            <div className="mt-6 flex gap-3">
-              <button
-                type="submit"
-                disabled={busy}
-                className="flex-1 rounded-lg bg-electric px-5 py-3 font-semibold text-primary-foreground disabled:opacity-60"
-              >
-                {busy ? "Opening checkout…" : "Continue to payment"}
-              </button>
-              <button type="button" onClick={() => setOpen(false)} className="rounded-lg border border-navy/20 px-5 py-3">
-                Cancel
-              </button>
+            <div className="h-1 w-full bg-gradient-to-r from-electric via-signal to-electric" />
+            <div className="p-6">
+              <div className="eyebrow mb-2 flex items-center gap-2 text-electric">
+                <span className="size-1.5 rounded-full bg-signal" /> Secure payment
+              </div>
+              <h3 className="font-display text-xl font-semibold">Pay for {service}</h3>
+              <p className="mt-1 text-sm text-mist/55">
+                Enter the amount we quoted you on WhatsApp, in US dollars.
+              </p>
+              <label className="mt-5 block text-sm font-medium text-mist/70">
+                Amount (USD)
+                <div className="relative mt-1">
+                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-mist/40">$</span>
+                  <input
+                    type="number"
+                    min="1"
+                    step="0.01"
+                    required
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="0.00"
+                    className="w-full rounded-lg border border-mist/15 bg-mist/5 py-2.5 pl-7 pr-3 text-mist placeholder:text-mist/30 focus:outline-none focus:ring-2 focus:ring-electric"
+                  />
+                </div>
+              </label>
+              <label className="mt-4 block text-sm font-medium text-mist/70">
+                Email (for your receipt)
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="mt-1 w-full rounded-lg border border-mist/15 bg-mist/5 px-3 py-2.5 text-mist placeholder:text-mist/30 focus:outline-none focus:ring-2 focus:ring-electric"
+                />
+              </label>
+              {error ? <p className="mt-3 text-sm text-destructive">{error}</p> : null}
+              <div className="mt-6 flex gap-3">
+                <button
+                  type="submit"
+                  disabled={busy}
+                  className="flex-1 rounded-lg bg-electric px-5 py-3 font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-60"
+                >
+                  {busy ? "Opening checkout…" : "Continue to payment"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg border border-mist/20 px-5 py-3 font-semibold text-mist/80 transition hover:bg-mist/10"
+                >
+                  Cancel
+                </button>
+              </div>
+              <p className="mt-4 text-center font-mono text-[11px] text-mist/35">
+                Powered by Bachs · Card, bank transfer & mobile money
+              </p>
             </div>
           </form>
         </div>

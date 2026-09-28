@@ -16,7 +16,7 @@ export const createBachsCheckout = createServerFn({ method: "POST" })
     const base = key.startsWith("sk_sandbox_") ? "https://sandbox-api.bachs.io" : "https://api.bachs.io";
     const origin = /localhost|127\.0\.0\.1/.test(data.origin) ? "https://nexatechh.lovable.app" : data.origin;
     const body: Record<string, unknown> = {
-      pricing: { currency: "KES", amount: data.amount.toFixed(2) },
+      pricing: { currency: "USD", amount: data.amount.toFixed(2) },
       success_url: `${origin}/payment-success`,
       cancel_url: `${origin}/`,
       metadata: { service: data.service },
